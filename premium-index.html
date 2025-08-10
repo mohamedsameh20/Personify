@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium personality assessment with advanced 3D visualizations, character matching, and AI-powered insights">
+    <meta name="keywords" content="personality test, MBTI, Big Five, character comparison, psychology assessment">
+    <meta name="author" content="Personify Premium">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Personify Premium - Advanced Personality Assessment">
+    <meta property="og:description" content="Discover your personality through cutting-edge assessment technology">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://personify-premium.app">
+    
+    <!-- Progressive Web App -->
+    <meta name="theme-color" content="#6C5CE7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="libs/chart.min.js" as="script">
+    <link rel="preload" href="libs/three.min.js" as="script">
+    
+    <title>Personify Premium - Advanced Personality Assessment</title>
+    
+    <!-- Critical CSS Inline -->
+    <style>
+        /* Critical above-the-fold styles */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-color: #6C5CE7;
+            --text-primary: #2d3748;
+            --background-primary: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-soft: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        [data-theme="dark"] {
+            --text-primary: #f7fafc;
+            --background-primary: #1a202c;
+            --glass-bg: rgba(0, 0, 0, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            background: var(--primary-gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+    
+    <!-- External Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/premium-styles.css">
+    <link rel="stylesheet" href="css/premium-animations.css">
+    <link rel="stylesheet" href="css/premium-components.css">
+    <link rel="stylesheet" href="css/responsive-premium.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2 style="color: white; margin-top: 20px; font-weight: 300;">Initializing Premium Experience...</h2>
+        </div>
+    </div>
+
+    <!-- Particle Background Canvas -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="premium-nav" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1 class="brand-logo">Personify <span class="premium-badge">Premium</span></h1>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#features" class="nav-link" data-section="features">Features</a>
+                <a href="#characters" class="nav-link" data-section="characters">Characters</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+            </div>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button id="settings-btn" class="settings-btn" aria-label="Settings">
+                    <span class="settings-icon">⚙️</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Application Container -->
+    <main id="app-container" class="app-container">
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero-section active-section">
+            <div class="hero-background">
+                <div class="animated-gradient"></div>
+                <div class="floating-elements">
+                    <div class="float-element" data-speed="2"></div>
+                    <div class="float-element" data-speed="3"></div>
+                    <div class="float-element" data-speed="1.5"></div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Discover Your True
+                        <span class="gradient-text">Personality</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Advanced AI-powered assessment with stunning 3D visualizations 
+                        and character comparisons from your favorite shows
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">120+</span>
+                            <span class="stat-label">Smart Questions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Character Matches</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3D</span>
+                            <span class="stat-label">Visualizations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <button id="start-premium-assessment" class="btn-premium-cta">
+                        <span class="btn-text">Begin Your Journey</span>
+                        <span class="btn-particles"></span>
+                    </button>
+                    <button id="resume-assessment" class="btn-secondary" style="display: none;">
+                        <span class="btn-text">Resume Assessment</span>
+                    </button>
+                </div>
+                
+                <div class="assessment-modes">
+                    <div class="mode-selector">
+                        <div class="mode-option" data-mode="quick">
+                            <div class="mode-icon">⚡</div>
+                            <div class="mode-info">
+                                <h3>Quick Assessment</h3>
+                                <p>30 questions • 8-10 minutes</p>
+                            </div>
+                        </div>
+                        <div class="mode-option selected" data-mode="standard">
+                            <div class="mode-icon">🎯</div>
+                            <div class="mode-info">
+                                <h3>Standard Assessment</h3>
+                                <p>60 questions • 15-20 minutes</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="comprehensive">
+                            <div class="mode-icon">🔬</div>
+                            <div class="mode-info">
+                                <h3>Comprehensive Assessment</h3>
+                                <p>120+ questions • 25-30 minutes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="personality-preview">
+                    <div id="preview-radar" class="preview-chart"></div>
+                    <div class="preview-characters">
+                        <div class="character-orbit">
+                            <div class="character-preview" data-character="phineas">
+                                <img src="assets/images/characters/phineas-flynn.png" alt="Phineas Flynn">
+                            </div>
+                            <div class="character-preview" data-character="ferb">
+                                <img src="assets/images/characters/ferb-fletcher.png" alt="Ferb Fletcher">
+                            </div>
+                            <div class="character-preview" data-character="candace">
+                                <img src="assets/images/characters/candace-flynn.png" alt="Candace Flynn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section id="assessment-section" class="assessment-section">
+            <div class="assessment-container">
+                <div class="assessment-header">
+                    <div class="progress-system">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="main-progress"></div>
+                            <div class="progress-milestones">
+                                <div class="milestone" data-progress="25">🎯</div>
+                                <div class="milestone" data-progress="50">🧠</div>
+                                <div class="milestone" data-progress="75">✨</div>
+                                <div class="milestone" data-progress="100">🎉</div>
+                            </div>
+                        </div>
+                        <div class="progress-info">
+                            <span id="question-counter">Question 1 of 60</span>
+                            <span id="time-estimate">~15 minutes remaining</span>
+                        </div>
+                    </div>
+                    <div class="assessment-controls">
+                        <button id="save-progress" class="btn-save">
+                            <span class="save-icon">💾</span>
+                            <span>Save Progress</span>
+                        </button>
+                        <button id="assessment-settings" class="btn-settings">⚙️</button>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-visual" id="question-visual">
+                        <div class="trait-indicator" id="trait-indicator">
+                            <div class="trait-icon"></div>
+                            <div class="trait-name"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-content">
+                        <div class="question-category" id="question-category">Behavioral Scenario</div>
+                        <h2 class="question-text" id="question-text">
+                            Loading your personalized question...
+                        </h2>
+                        <div class="question-context" id="question-context"></div>
+                    </div>
+
+                    <div class="answer-system" id="answer-system">
+                        <div class="likert-scale">
+                            <div class="scale-labels">
+                                <span class="scale-label">Strongly Disagree</span>
+                                <span class="scale-label">Neutral</span>
+                                <span class="scale-label">Strongly Agree</span>
+                            </div>
+                            <div class="scale-options">
+                                <input type="radio" name="answer" value="1" id="answer-1">
+                                <label for="answer-1" class="scale-option">
+                                    <span class="option-number">1</span>
+                                    <span class="option-description">Strongly Disagree</span>
+                                </label>
+                                
+                                <input type="radio" name="answer" value="2" id="answer-2">
+                                <label for="answer-2" class="scale-option">
+                                    <span class="option-number">2</span>
+                                    <span class="option-description">Disagree</span>
+                                </label>
+                                
+                                <input type="radio" name="answer" value="3" id="answer-3">
+                                <label for="answer-3" class="scale-option">
+                                    <span class="option-number">3</span>
+                                    <span class="option-description">Neutral</span>
+                                </label>
+                                
+                                <input type="radio" name="answer" value="4" id="answer-4">
+                                <label for="answer-4" class="scale-option">
+                                    <span class="option-number">4</span>
+                                    <span class="option-description">Agree</span>
+                                </label>
+                                
+                                <input type="radio" name="answer" value="5" id="answer-5">
+                                <label for="answer-5" class="scale-option">
+                                    <span class="option-number">5</span>
+                                    <span class="option-description">Strongly Agree</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-navigation">
+                        <button id="prev-question" class="btn-nav" disabled>
+                            <span class="nav-icon">←</span>
+                            <span>Previous</span>
+                        </button>
+                        
+                        <div class="nav-center">
+                            <button id="skip-question" class="btn-skip">Skip Question</button>
+                            <div class="question-confidence" id="question-confidence">
+                                <span class="confidence-label">Confidence:</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="next-question" class="btn-nav" disabled>
+                            <span>Next</span>
+                            <span class="nav-icon">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="real-time-insights" id="real-time-insights">
+                    <div class="insights-header">
+                        <h3>Emerging Personality Patterns</h3>
+                        <button class="insights-toggle">📊</button>
+                    </div>
+                    <div class="insights-content">
+                        <div class="trait-preview" id="trait-preview">
+                            <div class="preview-radar-mini"></div>
+                            <div class="preview-traits"></div>
+                        </div>
+                        <div class="character-hints" id="character-hints">
+                            <h4>You might be similar to:</h4>
+                            <div class="hint-characters"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="results-section">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="results-hero">
+                        <h1 class="results-title">Your Personality Revealed</h1>
+                        <div class="mbti-display" id="mbti-display">
+                            <div class="mbti-letters">
+                                <span class="mbti-letter">I</span>
+                                <span class="mbti-letter">N</span>
+                                <span class="mbti-letter">F</span>
+                                <span class="mbti-letter">P</span>
+                            </div>
+                            <div class="mbti-description">The Mediator</div>
+                        </div>
+                        <div class="personality-summary" id="personality-summary">
+                            Discover your unique personality profile through advanced analysis
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button id="download-report" class="btn-premium">
+                            <span class="btn-icon">📄</span>
+                            <span>Download Report</span>
+                        </button>
+                        <button id="share-results" class="btn-secondary">
+                            <span class="btn-icon">📤</span>
+                            <span>Share Results</span>
+                        </button>
+                        <button id="retake-assessment" class="btn-outline">
+                            <span class="btn-icon">🔄</span>
+                            <span>Retake Assessment</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="results-content">
+                    <div class="visualization-panel">
+                        <div class="chart-container">
+                            <div class="chart-tabs">
+                                <button class="chart-tab active" data-chart="radar">3D Radar</button>
+                                <button class="chart-tab" data-chart="bars">Trait Bars</button>
+                                <button class="chart-tab" data-chart="heatmap">Correlation Heatmap</button>
+                                <button class="chart-tab" data-chart="timeline">Growth Timeline</button>
+                            </div>
+                            
+                            <div class="chart-area">
+                                <div id="radar-chart-3d" class="chart-display active"></div>
+                                <div id="bars-chart" class="chart-display"></div>
+                                <div id="heatmap-chart" class="chart-display"></div>
+                                <div id="timeline-chart" class="chart-display"></div>
+                            </div>
+                            
+                            <div class="chart-controls">
+                                <div class="control-group">
+                                    <label>Comparison Mode:</label>
+                                    <select id="comparison-mode">
+                                        <option value="none">Individual Profile</option>
+                                        <option value="character">vs Character</option>
+                                        <option value="average">vs Average</option>
+                                        <option value="ideal">vs Ideal Self</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label>Visual Theme:</label>
+                                    <select id="visual-theme">
+                                        <option value="auto">Auto (Personality-based)</option>
+                                        <option value="professional">Professional</option>
+                                        <option value="creative">Creative</option>
+                                        <option value="minimal">Minimal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insights-panel">
+                        <div class="insights-tabs">
+                            <button class="insights-tab active" data-insights="overview">Overview</button>
+                            <button class="insights-tab" data-insights="strengths">Strengths</button>
+                            <button class="insights-tab" data-insights="growth">Growth Areas</button>
+                            <button class="insights-tab" data-insights="careers">Careers</button>
+                            <button class="insights-tab" data-insights="relationships">Relationships</button>
+                        </div>
+                        
+                        <div class="insights-content">
+                            <div id="overview-insights" class="insights-section active">
+                                <div class="personality-overview">
+                                    <div class="trait-breakdown" id="trait-breakdown"></div>
+                                    <div class="confidence-indicators" id="confidence-indicators"></div>
+                                </div>
+                            </div>
+                            
+                            <div id="strengths-insights" class="insights-section">
+                                <div class="strengths-list" id="strengths-list"></div>
+                            </div>
+                            
+                            <div id="growth-insights" class="insights-section">
+                                <div class="growth-areas" id="growth-areas"></div>
+                            </div>
+                            
+                            <div id="careers-insights" class="insights-section">
+                                <div class="career-matches" id="career-matches"></div>
+                            </div>
+                            
+                            <div id="relationships-insights" class="insights-section">
+                                <div class="relationship-analysis" id="relationship-analysis"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-comparison-section">
+                    <h2 class="section-title">Character Similarity Analysis</h2>
+                    <div class="character-gallery" id="character-gallery">
+                        <!-- Character cards will be populated dynamically -->
+                    </div>
+                    
+                    <div class="detailed-comparison" id="detailed-comparison" style="display: none;">
+                        <div class="comparison-header">
+                            <div class="user-profile">
+                                <div class="profile-avatar">You</div>
+                                <div class="profile-info">
+                                    <h3>Your Profile</h3>
+                                    <div class="profile-mbti" id="user-mbti">INFP</div>
+                                </div>
+                            </div>
+                            
+                            <div class="vs-indicator">
+                                <span class="vs-text">vs</span>
+                                <div class="similarity-score" id="similarity-score">87%</div>
+                            </div>
+                            
+                            <div class="character-profile" id="selected-character">
+                                <div class="profile-avatar">
+                                    <img src="" alt="" id="character-avatar">
+                                </div>
+                                <div class="profile-info">
+                                    <h3 id="character-name">Character Name</h3>
+                                    <div class="profile-show" id="character-show">Show Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-content">
+                            <div class="comparison-chart" id="comparison-chart"></div>
+                            <div class="comparison-insights" id="comparison-insights"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Showcase Section -->
+        <section id="features" class="features-section">
+            <div class="features-container">
+                <div class="features-header">
+                    <h2 class="section-title">Premium Features</h2>
+                    <p class="section-subtitle">Advanced assessment technology with stunning visualizations</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card" data-feature="assessment">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Intelligent Assessment</h3>
+                        <p>AI-powered question selection with adaptive difficulty progression</p>
+                        <div class="feature-demo" id="assessment-demo"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="visualizations">
+                        <div class="feature-icon">📊</div>
+                        <h3>3D Visualizations</h3>
+                        <p>Interactive charts with particle effects and smooth animations</p>
+                        <div class="feature-demo" id="viz-demo"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="characters">
+                        <div class="feature-icon">🎭</div>
+                        <h3>Character Matching</h3>
+                        <p>Compare with 15+ fictional characters using advanced algorithms</p>
+                        <div class="feature-demo" id="characters-demo"></div>
+                    </div>
+                    
+                    <div class="feature-card" data-feature="insights">
+                        <div class="feature-icon">💡</div>
+                        <h3>AI Insights</h3>
+                        <p>Personalized growth recommendations and career guidance</p>
+                        <div class="feature-demo" id="insights-demo"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Character Showcase Section -->
+        <section id="characters" class="characters-showcase">
+            <div class="characters-container">
+                <div class="characters-header">
+                    <h2 class="section-title">Meet the Characters</h2>
+                    <p class="section-subtitle">Discover which fictional personalities match yours</p>
+                </div>
+                
+                <div class="character-carousel" id="character-carousel">
+                    <!-- Character showcase cards will be populated dynamically -->
+                </div>
+                
+                <div class="character-filter">
+                    <button class="filter-btn active" data-filter="all">All Characters</button>
+                    <button class="filter-btn" data-filter="creative">Creative Types</button>
+                    <button class="filter-btn" data-filter="analytical">Analytical Types</button>
+                    <button class="filter-btn" data-filter="social">Social Types</button>
+                    <button class="filter-btn" data-filter="adventurous">Adventurous Types</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 class="section-title">The Science Behind Personify</h2>
+                    <div class="about-grid">
+                        <div class="about-card">
+                            <h3>Research-Based</h3>
+                            <p>Built on validated psychological models including the Big Five and HEXACO frameworks</p>
+                        </div>
+                        <div class="about-card">
+                            <h3>Advanced Algorithms</h3>
+                            <p>Sophisticated scoring with trait correlations and confidence intervals</p>
+                        </div>
+                        <div class="about-card">
+                            <h3>Privacy-First</h3>
+                            <p>All data processed locally - your personality insights remain completely private</p>
+                        </div>
+                        <div class="about-card">
+                            <h3>Continuous Learning</h3>
+                            <p>Adaptive questioning that improves accuracy with each response</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-group">
+                    <h3>Visual Preferences</h3>
+                    <div class="setting-item">
+                        <label for="theme-select">Theme:</label>
+                        <select id="theme-select">
+                            <option value="auto">Auto</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="animations-toggle">Animations:</label>
+                        <input type="checkbox" id="animations-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="particles-toggle">Particle Effects:</label>
+                        <input type="checkbox" id="particles-toggle" checked>
+                    </div>
+                </div>
+                
+                <div class="settings-group">
+                    <h3>Assessment Preferences</h3>
+                    <div class="setting-item">
+                        <label for="auto-save-toggle">Auto-save Progress:</label>
+                        <input type="checkbox" id="auto-save-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="hints-toggle">Real-time Insights:</label>
+                        <input type="checkbox" id="hints-toggle" checked>
+                    </div>
+                </div>
+                
+                <div class="settings-group">
+                    <h3>Accessibility</h3>
+                    <div class="setting-item">
+                        <label for="high-contrast-toggle">High Contrast:</label>
+                        <input type="checkbox" id="high-contrast-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <label for="reduced-motion-toggle">Reduced Motion:</label>
+                        <input type="checkbox" id="reduced-motion-toggle">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Detail Modal -->
+    <div id="character-modal" class="modal">
+        <div class="modal-content character-modal-content">
+            <div class="modal-header">
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="character-detail-content">
+                    <!-- Character details populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    
+    <!-- Premium JavaScript Modules -->
+    <script src="js/utils-advanced.js"></script>
+    <script src="js/storage-premium.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/question-selector.js"></script>
+    <script src="js/scoring-advanced.js"></script>
+    <script src="js/characters-premium.js"></script>
+    <script src="js/visualizations-3d.js"></script>
+    <script src="js/insights-generator.js"></script>
+    <script src="js/assessment-engine.js"></script>
+    <script src="js/app-premium.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>

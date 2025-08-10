@@ -1,0 +1,332 @@
+{
+  "traits": {
+    "openness": {
+      "name": "Openness to Experience",
+      "description": "Reflects your appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience",
+      "facets": {
+        "imagination": {
+          "name": "Imagination",
+          "description": "Tendency to be creative, original, and have an active fantasy life"
+        },
+        "artistic": {
+          "name": "Artistic Interests",
+          "description": "Appreciation of art and beauty, sensitivity to aesthetic experiences"
+        },
+        "emotionality": {
+          "name": "Emotionality",
+          "description": "Receptivity to emotions and emotional experiences"
+        },
+        "adventurousness": {
+          "name": "Adventurousness",
+          "description": "Eagerness to try new activities, travel, and experience new things"
+        },
+        "intellect": {
+          "name": "Intellect",
+          "description": "Love of learning, intellectual curiosity, and appreciation for complex ideas"
+        },
+        "liberalism": {
+          "name": "Liberalism",
+          "description": "Readiness to challenge authority, convention, and traditional values"
+        }
+      },
+      "low_description": "Practical, conventional, prefers routine, down-to-earth",
+      "high_description": "Creative, curious, open to new experiences, imaginative"
+    },
+    "conscientiousness": {
+      "name": "Conscientiousness",
+      "description": "Shows your tendency to be organized, responsible, and hardworking",
+      "facets": {
+        "self_efficacy": {
+          "name": "Self-Efficacy",
+          "description": "Confidence in your ability to accomplish things and achieve goals"
+        },
+        "orderliness": {
+          "name": "Orderliness",
+          "description": "Tendency to be neat, tidy, and organized"
+        },
+        "dutifulness": {
+          "name": "Dutifulness",
+          "description": "Sense of moral obligation and commitment to doing what's right"
+        },
+        "achievement": {
+          "name": "Achievement Striving",
+          "description": "Drive to achieve excellence and work hard to accomplish goals"
+        },
+        "self_discipline": {
+          "name": "Self-Discipline",
+          "description": "Ability to persist at difficult or unpleasant tasks until completion"
+        },
+        "cautiousness": {
+          "name": "Cautiousness",
+          "description": "Tendency to think carefully before acting and avoid making mistakes"
+        }
+      },
+      "low_description": "Spontaneous, careless, disorganized, impulsive",
+      "high_description": "Organized, disciplined, careful, dutiful, achievement-oriented"
+    },
+    "extraversion": {
+      "name": "Extraversion",
+      "description": "Reflects your tendency to seek stimulation in the company of others",
+      "facets": {
+        "friendliness": {
+          "name": "Friendliness",
+          "description": "Warmth and affection toward others, sociability"
+        },
+        "gregariousness": {
+          "name": "Gregariousness",
+          "description": "Preference for the company of others, enjoyment of crowds"
+        },
+        "assertiveness": {
+          "name": "Assertiveness",
+          "description": "Tendency to be forceful, take charge, and express opinions boldly"
+        },
+        "activity": {
+          "name": "Activity Level",
+          "description": "Pace of living, energy, need for activity and stimulation"
+        },
+        "excitement": {
+          "name": "Excitement Seeking",
+          "description": "Need for environmental stimulation, preference for exciting activities"
+        },
+        "cheerfulness": {
+          "name": "Cheerfulness",
+          "description": "Tendency to experience positive emotions and express joy"
+        }
+      },
+      "low_description": "Reserved, quiet, independent, prefers solitude",
+      "high_description": "Outgoing, energetic, assertive, seeks social stimulation"
+    },
+    "agreeableness": {
+      "name": "Agreeableness",
+      "description": "Shows your tendency to be compassionate and cooperative rather than suspicious and antagonistic",
+      "facets": {
+        "trust": {
+          "name": "Trust",
+          "description": "Tendency to assume good intentions in others and believe people are honest"
+        },
+        "morality": {
+          "name": "Morality",
+          "description": "Straightforwardness, sincerity, and ingenuousness in dealing with others"
+        },
+        "altruism": {
+          "name": "Altruism",
+          "description": "Active concern for the welfare of others, generosity and willingness to help"
+        },
+        "cooperation": {
+          "name": "Cooperation",
+          "description": "Dislike of confrontations, willingness to compromise to get along with others"
+        },
+        "modesty": {
+          "name": "Modesty",
+          "description": "Tendency to be humble, self-effacing, and unpretentious"
+        },
+        "sympathy": {
+          "name": "Sympathy",
+          "description": "Empathy and concern for others, tendency to be moved by others' needs"
+        }
+      },
+      "low_description": "Competitive, skeptical, challenging, self-interested",
+      "high_description": "Trusting, helpful, empathetic, cooperative, modest"
+    },
+    "neuroticism": {
+      "name": "Neuroticism",
+      "description": "Reflects your tendency to experience negative emotions and psychological distress",
+      "facets": {
+        "anxiety": {
+          "name": "Anxiety",
+          "description": "Tendency to feel anxious, nervous, worried, and fearful"
+        },
+        "anger": {
+          "name": "Anger",
+          "description": "Tendency to feel angry, frustrated, and experience irritation"
+        },
+        "depression": {
+          "name": "Depression",
+          "description": "Tendency toward sadness, dejection, and discouragement"
+        },
+        "self_consciousness": {
+          "name": "Self-Consciousness",
+          "description": "Shyness, social anxiety, and concern about what others think"
+        },
+        "immoderation": {
+          "name": "Immoderation",
+          "description": "Tendency to give in to cravings and urges, difficulty resisting temptation"
+        },
+        "vulnerability": {
+          "name": "Vulnerability",
+          "description": "Feeling overwhelmed by stress, inability to cope with pressure"
+        }
+      },
+      "low_description": "Calm, emotionally stable, resilient, stress-resistant",
+      "high_description": "Anxious, easily stressed, moody, emotionally reactive"
+    }
+  },
+  "mbti_mapping": {
+    "E_I": {
+      "trait": "extraversion",
+      "threshold": 0.5,
+      "E_description": "Extraverted - Energized by external world, outgoing",
+      "I_description": "Introverted - Energized by inner world, reflective"
+    },
+    "S_N": {
+      "traits": ["openness", "conscientiousness"],
+      "calculation": "openness_weight * openness + conscientiousness_weight * (1 - conscientiousness)",
+      "openness_weight": 0.7,
+      "conscientiousness_weight": 0.3,
+      "threshold": 0.4,
+      "S_description": "Sensing - Focus on facts, details, present reality",
+      "N_description": "Intuitive - Focus on patterns, possibilities, future potential"
+    },
+    "T_F": {
+      "trait": "agreeableness",
+      "threshold": 0.5,
+      "reverse": true,
+      "T_description": "Thinking - Make decisions based on logic and analysis",
+      "F_description": "Feeling - Make decisions based on values and emotions"
+    },
+    "J_P": {
+      "trait": "conscientiousness",
+      "threshold": 0.5,
+      "J_description": "Judging - Prefer structure, planning, and closure",
+      "P_description": "Perceiving - Prefer flexibility, spontaneity, and adaptability"
+    }
+  },
+  "scoring_weights": {
+    "openness": {
+      "imagination": 0.2,
+      "artistic": 0.15,
+      "emotionality": 0.15,
+      "adventurousness": 0.2,
+      "intellect": 0.2,
+      "liberalism": 0.1
+    },
+    "conscientiousness": {
+      "self_efficacy": 0.15,
+      "orderliness": 0.2,
+      "dutifulness": 0.15,
+      "achievement": 0.2,
+      "self_discipline": 0.2,
+      "cautiousness": 0.1
+    },
+    "extraversion": {
+      "friendliness": 0.2,
+      "gregariousness": 0.2,
+      "assertiveness": 0.15,
+      "activity": 0.15,
+      "excitement": 0.15,
+      "cheerfulness": 0.15
+    },
+    "agreeableness": {
+      "trust": 0.15,
+      "morality": 0.15,
+      "altruism": 0.2,
+      "cooperation": 0.2,
+      "modesty": 0.15,
+      "sympathy": 0.15
+    },
+    "neuroticism": {
+      "anxiety": 0.2,
+      "anger": 0.15,
+      "depression": 0.2,
+      "self_consciousness": 0.15,
+      "immoderation": 0.15,
+      "vulnerability": 0.15
+    }
+  },
+  "confidence_intervals": {
+    "sample_sizes": {
+      "high": 30,
+      "medium": 20,
+      "low": 10
+    },
+    "confidence_levels": {
+      "high": 0.95,
+      "medium": 0.90,
+      "low": 0.85
+    }
+  },
+  "insight_templates": {
+    "strengths": {
+      "high_openness": {
+        "title": "Creative Problem Solver",
+        "description": "Your high openness makes you excellent at thinking outside the box and finding innovative solutions to complex problems."
+      },
+      "high_conscientiousness": {
+        "title": "Reliable Achiever",
+        "description": "Your conscientiousness drives you to follow through on commitments and achieve your goals with discipline and organization."
+      },
+      "high_extraversion": {
+        "title": "Natural Leader",
+        "description": "Your extraversion makes you comfortable taking charge, inspiring others, and thriving in social environments."
+      },
+      "high_agreeableness": {
+        "title": "Team Builder",
+        "description": "Your agreeable nature helps you create harmony, build trust, and bring out the best in others."
+      },
+      "low_neuroticism": {
+        "title": "Emotional Stability",
+        "description": "Your emotional stability helps you stay calm under pressure and maintain a positive outlook even in challenging situations."
+      }
+    },
+    "growth_areas": {
+      "low_openness": {
+        "title": "Embrace New Perspectives",
+        "description": "Consider exploring new ideas, trying different approaches, and being more open to change and innovation."
+      },
+      "low_conscientiousness": {
+        "title": "Develop Organization Skills",
+        "description": "Focus on building better planning habits, setting clear goals, and following through on commitments."
+      },
+      "low_extraversion": {
+        "title": "Expand Social Comfort Zone",
+        "description": "Practice speaking up in groups, networking, and taking on more visible roles when appropriate."
+      },
+      "low_agreeableness": {
+        "title": "Build Collaborative Skills",
+        "description": "Work on seeing different perspectives, practicing empathy, and finding win-win solutions in conflicts."
+      },
+      "high_neuroticism": {
+        "title": "Stress Management",
+        "description": "Develop coping strategies for managing stress, anxiety, and emotional reactions in challenging situations."
+      }
+    },
+    "relationships": {
+      "high_extraversion_high_agreeableness": {
+        "title": "Social Harmonizer",
+        "description": "You excel at bringing people together and creating positive group dynamics."
+      },
+      "low_extraversion_high_agreeableness": {
+        "title": "Supportive Listener",
+        "description": "You're likely to be the person others turn to for emotional support and understanding."
+      },
+      "high_openness_high_agreeableness": {
+        "title": "Empathetic Innovator",
+        "description": "You combine creativity with compassion, helping others explore new possibilities."
+      },
+      "high_conscientiousness_high_agreeableness": {
+        "title": "Dependable Partner",
+        "description": "Your reliability and consideration make you a trustworthy and caring friend or partner."
+      }
+    },
+    "careers": {
+      "high_openness_high_extraversion": [
+        "Creative Director", "Marketing Manager", "Entrepreneur", "Public Relations", "Event Planner"
+      ],
+      "high_openness_low_extraversion": [
+        "Artist", "Writer", "Research Scientist", "Software Developer", "Psychologist"
+      ],
+      "high_conscientiousness_high_extraversion": [
+        "Project Manager", "Sales Manager", "Executive", "Teacher", "Consultant"
+      ],
+      "high_conscientiousness_low_extraversion": [
+        "Accountant", "Engineer", "Librarian", "Quality Analyst", "Technical Writer"
+      ],
+      "high_agreeableness_high_extraversion": [
+        "Counselor", "Social Worker", "HR Manager", "Nurse", "Customer Service Manager"
+      ],
+      "high_agreeableness_low_extraversion": [
+        "Therapist", "Veterinarian", "Medical Technician", "Researcher", "Editor"
+      ]
+    }
+  }
+}

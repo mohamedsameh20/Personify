@@ -1,73 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Premium Personality Assessment</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preload" href="css/assessment.css" as="style" />
-  <link rel="preload" href="css/results.css" as="style" />
-  <link rel="preload" href="css/characters.css" as="style" />
-  <script defer src="js/app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personify - Comprehensive Personality Assessment</title>
+    <meta name="description" content="Discover your personality through a comprehensive assessment and find your fictional character matches">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/assessment.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <!-- Progressive Web App -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Personify - Personality Assessment">
+    <meta property="og:description" content="Discover your personality and character matches">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/personify">
+    
+    <!-- Accessibility -->
+    <meta name="robots" content="index, follow">
 </head>
-<body class="theme-loading">
-  <header class="site-header" role="banner">
-    <nav aria-label="Main navigation" class="nav-main">
-      <a href="index.html" class="logo" aria-label="Home">PersonaPrime</a>
-      <ul class="nav-links">
-        <li><a href="assessment.html">Assessment</a></li>
-        <li><a href="characters.html">Characters</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><button id="themeToggle" aria-pressed="false">Toggle Theme</button></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="landing" class="landing" tabindex="-1">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-content">
-        <h1 id="heroTitle">Discover Your Premium Personality Profile</h1>
-        <p class="tagline">Adaptive assessment. Advanced analytics. Character-driven insights.</p>
-        <div class="cta-group">
-          <a href="assessment.html" class="btn btn-primary" id="beginJourney">Begin Your Journey</a>
-          <button class="btn btn-secondary" id="viewFeatures" aria-expanded="false" aria-controls="featureShowcase">Explore Features</button>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <div class="personality-circles">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+                <div class="circle circle-4"></div>
+            </div>
+            <h2>Loading Personify...</h2>
+            <p>Preparing your personality journey</p>
         </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <canvas id="heroParticles"></canvas>
-      </div>
-    </section>
+    </div>
 
-    <section id="featureShowcase" class="feature-showcase" hidden>
-      <h2>Premium Feature Suite</h2>
-      <ul class="features-grid" role="list">
-        <li class="feature-card" data-feature="adaptive">
-          <h3>Adaptive Intelligence</h3>
-          <p>Smart question selection refines accuracy in real-time.</p>
-        </li>
-        <li class="feature-card" data-feature="visualizations">
-          <h3>3D Visualizations</h3>
-          <p>Interact with immersive radar, bar, and heat map charts.</p>
-        </li>
-        <li class="feature-card" data-feature="characters">
-          <h3>Character Matching</h3>
-          <p>See how you align with beloved personalities.</p>
-        </li>
-        <li class="feature-card" data-feature="insights">
-          <h3>AI Insights</h3>
-          <p>Actionable guidance, growth paths, and strengths.</p>
-        </li>
-      </ul>
-    </section>
+    <!-- Main Application Container -->
+    <div id="app" class="app-container" style="display: none;">
+        
+        <!-- Navigation Header -->
+        <header class="app-header">
+            <nav class="nav-container">
+                <div class="nav-brand">
+                    <img src="assets/images/logo.svg" alt="Personify Logo" class="logo">
+                    <span class="brand-name">Personify</span>
+                </div>
+                <div class="nav-controls">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button id="save-progress" class="save-btn" style="display: none;">
+                        <span class="save-icon">💾</span>
+                        Save Progress
+                    </button>
+                </div>
+            </nav>
+        </header>
 
-    <section class="character-preview" aria-labelledby="characterPreviewHeading">
-      <h2 id="characterPreviewHeading">Character Personality Preview</h2>
-      <div id="characterCarousel" class="character-carousel" aria-live="polite"></div>
-    </section>
-  </main>
+        <!-- Welcome Screen -->
+        <section id="welcome-screen" class="screen welcome-screen active">
+            <div class="welcome-container">
+                <div class="welcome-hero">
+                    <h1 class="welcome-title">
+                        Discover Your
+                        <span class="gradient-text">Personality</span>
+                    </h1>
+                    <p class="welcome-subtitle">
+                        Take our comprehensive 12-trait personality assessment and discover which fictional characters share your unique traits.
+                    </p>
+                </div>
 
-  <footer class="site-footer" role="contentinfo">
-    <p>&copy; <span id="year"></span> PersonaPrime. All local. No data leaves your device.</p>
-  </footer>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>12-Trait Analysis</h3>
+                        <p>Comprehensive personality profiling across 12 core traits with detailed facet analysis</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Character Matching</h3>
+                        <p>Compare your personality with beloved fictional characters and discover your matches</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Visual Results</h3>
+                        <p>Beautiful charts and detailed insights about your personality profile</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Privacy First</h3>
+                        <p>All processing happens locally - your data never leaves your device</p>
+                    </div>
+                </div>
+
+                <div class="assessment-options">
+                    <h3>Choose Your Assessment</h3>
+                    <div class="option-cards">
+                        <div class="option-card" data-mode="demo">
+                            <div class="option-header">
+                                <h4>Quick Demo</h4>
+                                <span class="duration">~10 minutes</span>
+                            </div>
+                            <p>36 carefully selected questions for a quick personality snapshot</p>
+                            <div class="option-features">
+                                <span class="feature-tag">✨ Basic traits</span>
+                                <span class="feature-tag">⚡ Fast results</span>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card recommended" data-mode="basic">
+                            <div class="option-badge">Recommended</div>
+                            <div class="option-header">
+                                <h4>Standard Assessment</h4>
+                                <span class="duration">~25 minutes</span>
+                            </div>
+                            <p>120 questions providing reliable personality insights with good accuracy</p>
+                            <div class="option-features">
+                                <span class="feature-tag">🎯 Accurate results</span>
+                                <span class="feature-tag">📊 Detailed charts</span>
+                                <span class="feature-tag">👥 Character matches</span>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" data-mode="comprehensive">
+                            <div class="option-header">
+                                <h4>Comprehensive Analysis</h4>
+                                <span class="duration">~45 minutes</span>
+                            </div>
+                            <p>240 questions for the most thorough and accurate personality analysis</p>
+                            <div class="option-features">
+                                <span class="feature-tag">🔬 Maximum accuracy</span>
+                                <span class="feature-tag">📋 Detailed facets</span>
+                                <span class="feature-tag">🎓 Professional insights</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="start-button-container">
+                    <button id="start-assessment" class="start-btn" disabled>
+                        <span class="btn-text">Select an Assessment to Begin</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+
+                <div class="resume-section" id="resume-section" style="display: none;">
+                    <div class="resume-card">
+                        <h4>Continue Previous Assessment</h4>
+                        <p>You have a saved assessment in progress.</p>
+                        <div class="resume-actions">
+                            <button id="resume-assessment" class="resume-btn">Resume Assessment</button>
+                            <button id="start-new" class="new-btn">Start New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Screen -->
+        <section id="assessment-screen" class="screen assessment-screen">
+            <div class="assessment-container">
+                <!-- Progress Header -->
+                <div class="progress-header">
+                    <div class="progress-info">
+                        <span id="question-counter">Question 1 of 120</span>
+                        <span id="trait-focus">Focus: Honesty-Humility</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <h2 id="question-text">Loading question...</h2>
+                        <div class="question-meta">
+                            <span id="question-category" class="category-tag">Behavioral</span>
+                        </div>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div id="answer-options" class="answer-options">
+                        <!-- Likert Scale (default) -->
+                        <div class="likert-scale" id="likert-options">
+                            <div class="scale-labels">
+                                <span>Strongly Disagree</span>
+                                <span>Strongly Agree</span>
+                            </div>
+                            <div class="scale-options">
+                                <label class="scale-option">
+                                    <input type="radio" name="answer" value="1">
+                                    <span class="option-circle"></span>
+                                    <span class="option-label">1</span>
+                                </label>
+                                <label class="scale-option">
+                                    <input type="radio" name="answer" value="2">
+                                    <span class="option-circle"></span>
+                                    <span class="option-label">2</span>
+                                </label>
+                                <label class="scale-option">
+                                    <input type="radio" name="answer" value="3">
+                                    <span class="option-circle"></span>
+                                    <span class="option-label">3</span>
+                                </label>
+                                <label class="scale-option">
+                                    <input type="radio" name="answer" value="4">
+                                    <span class="option-circle"></span>
+                                    <span class="option-label">4</span>
+                                </label>
+                                <label class="scale-option">
+                                    <input type="radio" name="answer" value="5">
+                                    <span class="option-circle"></span>
+                                    <span class="option-label">5</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Multiple Choice -->
+                        <div class="multiple-choice" id="multiple-choice-options" style="display: none;">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="question-navigation">
+                        <button id="prev-question" class="nav-btn secondary" disabled>
+                            ← Previous
+                        </button>
+                        <div class="nav-center">
+                            <button id="skip-question" class="skip-btn">Skip Question</button>
+                        </div>
+                        <button id="next-question" class="nav-btn primary" disabled>
+                            Next →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Assessment Progress Sidebar -->
+                <div class="progress-sidebar">
+                    <h3>Assessment Progress</h3>
+                    <div class="trait-progress">
+                        <!-- Dynamically populated -->
+                    </div>
+                    <div class="time-estimate">
+                        <span id="time-remaining">Estimated time: 25 minutes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section id="results-screen" class="screen results-screen">
+            <div class="results-container">
+                <!-- Results Header -->
+                <div class="results-header">
+                    <h1>Your Personality Profile</h1>
+                    <div class="profile-summary">
+                        <div class="personality-type">
+                            <h2 id="mbti-type">ENFP</h2>
+                            <p id="type-description">The Campaigner</p>
+                        </div>
+                        <div class="completion-badge">
+                            <span class="badge-icon">✅</span>
+                            <span>Assessment Complete</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trait Visualization -->
+                <div class="visualization-section">
+                    <div class="chart-container">
+                        <h3>Personality Radar Chart</h3>
+                        <canvas id="radar-chart"></canvas>
+                    </div>
+                    <div class="trait-breakdown">
+                        <h3>Trait Scores</h3>
+                        <div id="trait-bars">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Matches -->
+                <div class="character-matches">
+                    <h3>Your Character Matches</h3>
+                    <p class="matches-description">
+                        Based on your personality profile, here are the fictional characters that share your traits:
+                    </p>
+                    <div id="character-grid" class="character-grid">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Detailed Analysis -->
+                <div class="detailed-analysis">
+                    <h3>Personality Insights</h3>
+                    <div class="analysis-tabs">
+                        <button class="tab-btn active" data-tab="strengths">Strengths</button>
+                        <button class="tab-btn" data-tab="growth">Growth Areas</button>
+                        <button class="tab-btn" data-tab="relationships">Relationships</button>
+                        <button class="tab-btn" data-tab="careers">Career Fit</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="strengths-tab" class="tab-panel active">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div id="growth-tab" class="tab-panel">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div id="relationships-tab" class="tab-panel">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div id="careers-tab" class="tab-panel">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="results-actions">
+                    <button id="download-results" class="action-btn primary">
+                        📄 Download PDF Report
+                    </button>
+                    <button id="share-results" class="action-btn secondary">
+                        🔗 Share Results
+                    </button>
+                    <button id="retake-assessment" class="action-btn tertiary">
+                        🔄 Take Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Character Detail Modal -->
+        <div id="character-modal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="character-detail">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="settings-content">
+                    <h2>Settings</h2>
+                    <div class="setting-group">
+                        <h3>Appearance</h3>
+                        <label class="setting-option">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span>Dark Mode</span>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Accessibility</h3>
+                        <label class="setting-option">
+                            <input type="checkbox" id="reduced-motion">
+                            <span>Reduce Motion</span>
+                        </label>
+                        <label class="setting-option">
+                            <input type="checkbox" id="high-contrast">
+                            <span>High Contrast</span>
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <h3>Data</h3>
+                        <button id="export-data" class="setting-btn">Export My Data</button>
+                        <button id="clear-data" class="setting-btn danger">Clear All Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="error-toast">
+        <span class="error-text"></span>
+        <button class="error-close">&times;</button>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/storage.js"></script>
+    <script src="js/scoring.js"></script>
+    <script src="js/characters.js"></script>
+    <script src="js/visualizations.js"></script>
+    <script src="js/assessment.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            });
+        }
+    </script>
 </body>
 </html>

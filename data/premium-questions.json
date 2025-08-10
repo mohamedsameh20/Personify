@@ -1,1 +1,538 @@
-[]
+{
+  "questions": [
+    {
+      "id": "ext_001",
+      "text": "I feel comfortable being the center of attention in social gatherings.",
+      "category": "social",
+      "traits": [
+        {
+          "name": "Extraversion",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Assertiveness"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.4,
+        "discriminability": 0.8,
+        "timeEstimate": 8000
+      }
+    },
+    {
+      "id": "ext_002",
+      "text": "I prefer working alone rather than in groups.",
+      "category": "work_style",
+      "traits": [
+        {
+          "name": "Extraversion",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Sociability"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.3,
+        "discriminability": 0.7,
+        "timeEstimate": 7000
+      }
+    },
+    {
+      "id": "agr_001",
+      "text": "I often put others' needs before my own.",
+      "category": "interpersonal",
+      "traits": [
+        {
+          "name": "Agreeableness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Altruism"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.5,
+        "discriminability": 0.6,
+        "timeEstimate": 9000
+      }
+    },
+    {
+      "id": "con_001",
+      "text": "I always complete tasks on time, even if they're challenging.",
+      "category": "work_habits",
+      "traits": [
+        {
+          "name": "Conscientiousness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Dutifulness"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.6,
+        "discriminability": 0.9,
+        "timeEstimate": 8500
+      }
+    },
+    {
+      "id": "neu_001",
+      "text": "I tend to worry about things that might go wrong.",
+      "category": "emotional",
+      "traits": [
+        {
+          "name": "Neuroticism",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Anxiety"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.4,
+        "discriminability": 0.7,
+        "timeEstimate": 7500
+      }
+    },
+    {
+      "id": "ope_001",
+      "text": "I enjoy exploring new ideas and concepts, even if they're abstract.",
+      "category": "intellectual",
+      "traits": [
+        {
+          "name": "Openness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Ideas"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.7,
+        "discriminability": 0.8,
+        "timeEstimate": 10000
+      }
+    },
+    {
+      "id": "ext_003",
+      "text": "I get energized by being around other people.",
+      "category": "social",
+      "traits": [
+        {
+          "name": "Extraversion",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Positive Emotions"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.3,
+        "discriminability": 0.9,
+        "timeEstimate": 6000
+      }
+    },
+    {
+      "id": "agr_002",
+      "text": "I find it difficult to trust others initially.",
+      "category": "interpersonal",
+      "traits": [
+        {
+          "name": "Agreeableness",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Trust"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.5,
+        "discriminability": 0.6,
+        "timeEstimate": 9500
+      }
+    },
+    {
+      "id": "con_002",
+      "text": "I often start projects but struggle to finish them.",
+      "category": "work_habits",
+      "traits": [
+        {
+          "name": "Conscientiousness",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Self-Discipline"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.4,
+        "discriminability": 0.8,
+        "timeEstimate": 8000
+      }
+    },
+    {
+      "id": "neu_002",
+      "text": "I remain calm under pressure.",
+      "category": "emotional",
+      "traits": [
+        {
+          "name": "Neuroticism",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Stress"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.6,
+        "discriminability": 0.7,
+        "timeEstimate": 7000
+      }
+    },
+    {
+      "id": "ope_002",
+      "text": "I prefer familiar routines over trying new approaches.",
+      "category": "lifestyle",
+      "traits": [
+        {
+          "name": "Openness",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Actions"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.4,
+        "discriminability": 0.6,
+        "timeEstimate": 8500
+      }
+    },
+    {
+      "id": "ext_004",
+      "text": "I speak up in meetings and group discussions.",
+      "category": "work_style",
+      "traits": [
+        {
+          "name": "Extraversion",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Assertiveness"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.5,
+        "discriminability": 0.8,
+        "timeEstimate": 7500
+      }
+    },
+    {
+      "id": "agr_003",
+      "text": "I try to avoid conflicts even when I disagree.",
+      "category": "interpersonal",
+      "traits": [
+        {
+          "name": "Agreeableness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Compliance"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.6,
+        "discriminability": 0.7,
+        "timeEstimate": 9000
+      }
+    },
+    {
+      "id": "con_003",
+      "text": "I keep my workspace organized and tidy.",
+      "category": "work_habits",
+      "traits": [
+        {
+          "name": "Conscientiousness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Order"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.3,
+        "discriminability": 0.9,
+        "timeEstimate": 6500
+      }
+    },
+    {
+      "id": "neu_003",
+      "text": "I often feel sad or depressed without a clear reason.",
+      "category": "emotional",
+      "traits": [
+        {
+          "name": "Neuroticism",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Depression"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.7,
+        "discriminability": 0.8,
+        "timeEstimate": 10000
+      }
+    },
+    {
+      "id": "ope_003",
+      "text": "I appreciate art, music, and literature.",
+      "category": "cultural",
+      "traits": [
+        {
+          "name": "Openness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Aesthetics"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.5,
+        "discriminability": 0.6,
+        "timeEstimate": 8000
+      }
+    },
+    {
+      "id": "ext_005",
+      "text": "I feel drained after spending time in large groups.",
+      "category": "social",
+      "traits": [
+        {
+          "name": "Extraversion",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Activity"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.4,
+        "discriminability": 0.8,
+        "timeEstimate": 7500
+      }
+    },
+    {
+      "id": "agr_004",
+      "text": "I believe most people have good intentions.",
+      "category": "interpersonal",
+      "traits": [
+        {
+          "name": "Agreeableness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Trust"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.6,
+        "discriminability": 0.7,
+        "timeEstimate": 9000
+      }
+    },
+    {
+      "id": "con_004",
+      "text": "I set ambitious goals for myself and work hard to achieve them.",
+      "category": "achievement",
+      "traits": [
+        {
+          "name": "Conscientiousness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Achievement Striving"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.5,
+        "discriminability": 0.8,
+        "timeEstimate": 8500
+      }
+    },
+    {
+      "id": "neu_004",
+      "text": "I bounce back quickly from setbacks.",
+      "category": "emotional",
+      "traits": [
+        {
+          "name": "Neuroticism",
+          "weight": 1.0,
+          "direction": "negative",
+          "facet": "Resilience"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.6,
+        "discriminability": 0.7,
+        "timeEstimate": 8000
+      }
+    },
+    {
+      "id": "ope_004",
+      "text": "I often question traditional ways of doing things.",
+      "category": "intellectual",
+      "traits": [
+        {
+          "name": "Openness",
+          "weight": 1.0,
+          "direction": "positive",
+          "facet": "Values"
+        }
+      ],
+      "options": [
+        { "text": "Strongly Disagree", "value": 1 },
+        { "text": "Disagree", "value": 2 },
+        { "text": "Neutral", "value": 3 },
+        { "text": "Agree", "value": 4 },
+        { "text": "Strongly Agree", "value": 5 }
+      ],
+      "metadata": {
+        "difficulty": 0.7,
+        "discriminability": 0.8,
+        "timeEstimate": 9500
+      }
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "totalQuestions": 21,
+    "categories": ["social", "work_style", "interpersonal", "work_habits", "emotional", "intellectual", "lifestyle", "cultural", "achievement"],
+    "traits": ["Extraversion", "Agreeableness", "Conscientiousness", "Neuroticism", "Openness"],
+    "lastUpdated": "2024-01-15T10:00:00.000Z",
+    "language": "en",
+    "targetDuration": "15-25 minutes"
+  }
+}

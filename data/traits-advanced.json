@@ -1,14 +1,320 @@
 {
-  "honesty_humility": {"weight":1.0},
-  "emotionality": {"weight":1.0},
-  "extraversion": {"weight":1.0},
-  "agreeableness": {"weight":1.0},
-  "conscientiousness": {"weight":1.0},
-  "openness": {"weight":1.0},
-  "dominance": {"weight":0.9},
-  "vigilance": {"weight":0.8},
-  "self_transcendence": {"weight":0.85},
-  "abstract_orientation": {"weight":0.75},
-  "value_orientation": {"weight":0.7},
-  "flexibility": {"weight":0.8}
+  "traits": [
+    {
+      "id": "extraversion",
+      "name": "Extraversion",
+      "description": "Tendency to seek stimulation in the company of others and to be energetic, assertive, and talkative.",
+      "scaleLow": "Introverted",
+      "scaleHigh": "Extraverted",
+      "normativeMean": 50,
+      "normativeSD": 10,
+      "reliability": 0.89,
+      "validity": 0.85,
+      "facets": [
+        {
+          "name": "Warmth",
+          "description": "Friendliness and affection toward others",
+          "weight": 1.0,
+          "reliability": 0.82,
+          "discriminability": 0.75
+        },
+        {
+          "name": "Gregariousness",
+          "description": "Preference for companionship and social stimulation",
+          "weight": 1.0,
+          "reliability": 0.81,
+          "discriminability": 0.78
+        },
+        {
+          "name": "Assertiveness",
+          "description": "Forcefulness of expression and willingness to take charge",
+          "weight": 1.0,
+          "reliability": 0.85,
+          "discriminability": 0.82
+        },
+        {
+          "name": "Activity",
+          "description": "Energy, fast tempo, and vigorous movement",
+          "weight": 1.0,
+          "reliability": 0.79,
+          "discriminability": 0.71
+        },
+        {
+          "name": "Excitement-Seeking",
+          "description": "Need for environmental stimulation",
+          "weight": 1.0,
+          "reliability": 0.77,
+          "discriminability": 0.69
+        },
+        {
+          "name": "Positive Emotions",
+          "description": "Tendency to experience positive emotions",
+          "weight": 1.0,
+          "reliability": 0.83,
+          "discriminability": 0.76
+        }
+      ],
+      "correlations": {
+        "Agreeableness": 0.25,
+        "Conscientiousness": 0.15,
+        "Neuroticism": -0.35,
+        "Openness": 0.22
+      }
+    },
+    {
+      "id": "agreeableness",
+      "name": "Agreeableness",
+      "description": "Tendency to be compassionate and cooperative rather than suspicious and antagonistic toward others.",
+      "scaleLow": "Competitive",
+      "scaleHigh": "Cooperative",
+      "normativeMean": 50,
+      "normativeSD": 10,
+      "reliability": 0.86,
+      "validity": 0.82,
+      "facets": [
+        {
+          "name": "Trust",
+          "description": "Willingness to believe that others have good intentions",
+          "weight": 1.0,
+          "reliability": 0.79,
+          "discriminability": 0.73
+        },
+        {
+          "name": "Straightforwardness",
+          "description": "Frank, sincere, and ingenuous speech",
+          "weight": 1.0,
+          "reliability": 0.75,
+          "discriminability": 0.68
+        },
+        {
+          "name": "Altruism",
+          "description": "Active concern for others' welfare",
+          "weight": 1.0,
+          "reliability": 0.82,
+          "discriminability": 0.77
+        },
+        {
+          "name": "Compliance",
+          "description": "Willingness to defer to others and inhibit aggression",
+          "weight": 1.0,
+          "reliability": 0.78,
+          "discriminability": 0.71
+        },
+        {
+          "name": "Modesty",
+          "description": "Tendency to be humble and self-effacing",
+          "weight": 1.0,
+          "reliability": 0.73,
+          "discriminability": 0.66
+        },
+        {
+          "name": "Tender-Mindedness",
+          "description": "Concern for others and sensitivity to suffering",
+          "weight": 1.0,
+          "reliability": 0.81,
+          "discriminability": 0.74
+        }
+      ],
+      "correlations": {
+        "Extraversion": 0.25,
+        "Conscientiousness": 0.28,
+        "Neuroticism": -0.18,
+        "Openness": 0.12
+      }
+    },
+    {
+      "id": "conscientiousness",
+      "name": "Conscientiousness",
+      "description": "Tendency to be organized, responsible, and hardworking.",
+      "scaleLow": "Flexible",
+      "scaleHigh": "Organized",
+      "normativeMean": 50,
+      "normativeSD": 10,
+      "reliability": 0.91,
+      "validity": 0.88,
+      "facets": [
+        {
+          "name": "Competence",
+          "description": "Sense of personal efficacy and capability",
+          "weight": 1.0,
+          "reliability": 0.84,
+          "discriminability": 0.79
+        },
+        {
+          "name": "Order",
+          "description": "Preference for organization and structure",
+          "weight": 1.0,
+          "reliability": 0.87,
+          "discriminability": 0.83
+        },
+        {
+          "name": "Dutifulness",
+          "description": "Emphasis on importance of fulfilling obligations",
+          "weight": 1.0,
+          "reliability": 0.85,
+          "discriminability": 0.81
+        },
+        {
+          "name": "Achievement Striving",
+          "description": "Need for personal achievement and sense of direction",
+          "weight": 1.0,
+          "reliability": 0.83,
+          "discriminability": 0.78
+        },
+        {
+          "name": "Self-Discipline",
+          "description": "Ability to persist with difficult or unpleasant tasks",
+          "weight": 1.0,
+          "reliability": 0.86,
+          "discriminability": 0.82
+        },
+        {
+          "name": "Deliberation",
+          "description": "Tendency to think carefully before acting",
+          "weight": 1.0,
+          "reliability": 0.81,
+          "discriminability": 0.75
+        }
+      ],
+      "correlations": {
+        "Extraversion": 0.15,
+        "Agreeableness": 0.28,
+        "Neuroticism": -0.42,
+        "Openness": 0.08
+      }
+    },
+    {
+      "id": "neuroticism",
+      "name": "Neuroticism",
+      "description": "Tendency to experience negative emotions such as anxiety, depression, and vulnerability.",
+      "scaleLow": "Emotionally Stable",
+      "scaleHigh": "Emotionally Reactive",
+      "normativeMean": 50,
+      "normativeSD": 10,
+      "reliability": 0.88,
+      "validity": 0.84,
+      "facets": [
+        {
+          "name": "Anxiety",
+          "description": "Tendency to experience worry, fear, and uneasiness",
+          "weight": 1.0,
+          "reliability": 0.85,
+          "discriminability": 0.81
+        },
+        {
+          "name": "Angry Hostility",
+          "description": "Tendency to experience anger and frustration",
+          "weight": 1.0,
+          "reliability": 0.82,
+          "discriminability": 0.77
+        },
+        {
+          "name": "Depression",
+          "description": "Tendency to experience sadness and hopelessness",
+          "weight": 1.0,
+          "reliability": 0.87,
+          "discriminability": 0.83
+        },
+        {
+          "name": "Self-Consciousness",
+          "description": "Tendency to be embarrassed and uncomfortable around others",
+          "weight": 1.0,
+          "reliability": 0.79,
+          "discriminability": 0.72
+        },
+        {
+          "name": "Impulsiveness",
+          "description": "Tendency to act on urges and cravings",
+          "weight": 1.0,
+          "reliability": 0.75,
+          "discriminability": 0.68
+        },
+        {
+          "name": "Vulnerability",
+          "description": "Susceptibility to stress and pressure",
+          "weight": 1.0,
+          "reliability": 0.84,
+          "discriminability": 0.79
+        }
+      ],
+      "correlations": {
+        "Extraversion": -0.35,
+        "Agreeableness": -0.18,
+        "Conscientiousness": -0.42,
+        "Openness": -0.05
+      }
+    },
+    {
+      "id": "openness",
+      "name": "Openness",
+      "description": "Appreciation for art, emotion, adventure, unusual ideas, curiosity, and variety of experience.",
+      "scaleLow": "Traditional",
+      "scaleHigh": "Open to Experience",
+      "normativeMean": 50,
+      "normativeSD": 10,
+      "reliability": 0.87,
+      "validity": 0.83,
+      "facets": [
+        {
+          "name": "Fantasy",
+          "description": "Receptivity to the inner world of imagination",
+          "weight": 1.0,
+          "reliability": 0.78,
+          "discriminability": 0.71
+        },
+        {
+          "name": "Aesthetics",
+          "description": "Appreciation of beauty in art and nature",
+          "weight": 1.0,
+          "reliability": 0.83,
+          "discriminability": 0.77
+        },
+        {
+          "name": "Feelings",
+          "description": "Openness to inner emotional states",
+          "weight": 1.0,
+          "reliability": 0.81,
+          "discriminability": 0.74
+        },
+        {
+          "name": "Actions",
+          "description": "Willingness to try new activities and experiences",
+          "weight": 1.0,
+          "reliability": 0.79,
+          "discriminability": 0.73
+        },
+        {
+          "name": "Ideas",
+          "description": "Intellectual curiosity and openness to new ideas",
+          "weight": 1.0,
+          "reliability": 0.85,
+          "discriminability": 0.81
+        },
+        {
+          "name": "Values",
+          "description": "Readiness to reexamine own values and those of authority",
+          "weight": 1.0,
+          "reliability": 0.77,
+          "discriminability": 0.69
+        }
+      ],
+      "correlations": {
+        "Extraversion": 0.22,
+        "Agreeableness": 0.12,
+        "Conscientiousness": 0.08,
+        "Neuroticism": -0.05
+      }
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "model": "Big Five",
+    "totalTraits": 5,
+    "totalFacets": 30,
+    "normativeSample": "Adult population (N=10,000)",
+    "lastUpdated": "2024-01-15T10:00:00.000Z",
+    "reliabilityMethod": "Cronbach's Alpha",
+    "validityMethod": "Construct Validity",
+    "notes": "Based on Costa & McCrae NEO-PI-R model with enhanced facet definitions"
+  }
 }

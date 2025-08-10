@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personify - Module Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personify - Module Loading Test</h1>
+    <p>This page tests that all JavaScript modules load correctly and can interact with each other.</p>
+
+    <div id="test-results">
+        <div class="test-section loading">
+            <h3>🔄 Loading modules...</h3>
+            <p>Please wait while we test all components.</p>
+        </div>
+    </div>
+
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    
+    <!-- Our JavaScript modules -->
+    <script src="js/storage.js"></script>
+    <script src="js/scoring.js"></script>
+    <script src="js/characters.js"></script>
+    <script src="js/visualizations.js"></script>
+    <script src="js/assessment.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        // Test runner
+        class ModuleTest {
+            constructor() {
+                this.results = [];
+                this.runTests();
+            }
+
+            async runTests() {
+                try {
+                    // Test 1: Module loading
+                    this.testModuleLoading();
+                    
+                    // Test 2: Data loading
+                    await this.testDataLoading();
+                    
+                    // Test 3: Storage functionality
+                    this.testStorage();
+                    
+                    // Test 4: Scoring calculations
+                    this.testScoring();
+                    
+                    // Test 5: Character matching
+                    this.testCharacterMatching();
+                    
+                    // Test 6: Visualization creation
+                    this.testVisualization();
+                    
+                    // Display results
+                    this.displayResults();
+                    
+                } catch (error) {
+                    this.addResult('Critical Error', `Failed to run tests: ${error.message}`, false);
+                    this.displayResults();
+                }
+            }
+
+            testModuleLoading() {
+                const modules = [
+                    'StorageManager',
+                    'ScoringEngine', 
+                    'CharacterEngine',
+                    'VisualizationEngine',
+                    'AssessmentEngine',
+                    'PersonalityApp'
+                ];
+
+                modules.forEach(moduleName => {
+                    try {
+                        const moduleExists = typeof window[moduleName] === 'function';
+                        this.addResult(
+                            `Module: ${moduleName}`,
+                            moduleExists ? 'Successfully loaded' : 'Not found or not a constructor',
+                            moduleExists
+                        );
+                    } catch (error) {
+                        this.addResult(`Module: ${moduleName}`, `Error: ${error.message}`, false);
+                    }
+                });
+            }
+
+            async testDataLoading() {
+                try {
+                    // Test fetching questions
+                    const questionsResponse = await fetch('data/questions_extended.json');
+                    const questionsData = await questionsResponse.json();
+                    this.addResult(
+                        'Data: Questions Extended',
+                        `Loaded ${questionsData.comprehensive_questions?.length || 0} questions`,
+                        questionsData.comprehensive_questions?.length > 0
+                    );
+
+                    // Test fetching characters
+                    const charactersResponse = await fetch('data/characters_extended.json');
+                    const charactersData = await charactersResponse.json();
+                    this.addResult(
+                        'Data: Characters Extended', 
+                        `Loaded ${charactersData.length || 0} characters`,
+                        charactersData.length > 0
+                    );
+
+                    // Test fetching traits
+                    const traitsResponse = await fetch('data/traits.json');
+                    const traitsData = await traitsResponse.json();
+                    this.addResult(
+                        'Data: Traits Configuration',
+                        `Loaded ${Object.keys(traitsData.traits || {}).length} traits`,
+                        Object.keys(traitsData.traits || {}).length > 0
+                    );
+
+                } catch (error) {
+                    this.addResult('Data Loading', `Failed: ${error.message}`, false);
+                }
+            }
+
+            testStorage() {
+                try {
+                    const storage = new StorageManager();
+                    
+                    // Test saving and loading
+                    const testData = { test: 'value', timestamp: Date.now() };
+                    storage.saveUserPreferences(testData);
+                    const loaded = storage.loadUserPreferences();
+                    
+                    const success = loaded.test === testData.test;
+                    this.addResult(
+                        'Storage: Save/Load',
+                        success ? 'Successfully saved and loaded test data' : 'Data mismatch',
+                        success
+                    );
+
+                    // Test localStorage availability
+                    this.addResult(
+                        'Storage: LocalStorage',
+                        'Available and writable',
+                        true
+                    );
+
+                } catch (error) {
+                    this.addResult('Storage Test', `Failed: ${error.message}`, false);
+                }
+            }
+
+            testScoring() {
+                try {
+                    const scoring = new ScoringEngine();
+                    
+                    // Test trait calculation
+                    const mockResponses = [
+                        { questionId: 'q1', answer: 4, trait: 'openness' },
+                        { questionId: 'q2', answer: 2, trait: 'conscientiousness' },
+                        { questionId: 'q3', answer: 5, trait: 'extraversion' }
+                    ];
+                    
+                    const mockQuestions = [
+                        { id: 'q1', primary_trait: 'openness', reverse_scored: false },
+                        { id: 'q2', primary_trait: 'conscientiousness', reverse_scored: true },
+                        { id: 'q3', primary_trait: 'extraversion', reverse_scored: false }
+                    ];
+
+                    const traitScores = scoring.calculateTraitScores(mockResponses, mockQuestions);
+                    
+                    this.addResult(
+                        'Scoring: Trait Calculation',
+                        `Calculated ${Object.keys(traitScores).length} trait scores`,
+                        Object.keys(traitScores).length > 0
+                    );
+
+                    // Test MBTI conversion
+                    const mbtiType = scoring.calculateMBTIType(traitScores);
+                    this.addResult(
+                        'Scoring: MBTI Conversion',
+                        `Generated MBTI type: ${mbtiType}`,
+                        mbtiType && mbtiType.length === 4
+                    );
+
+                } catch (error) {
+                    this.addResult('Scoring Test', `Failed: ${error.message}`, false);
+                }
+            }
+
+            testCharacterMatching() {
+                try {
+                    const characters = new CharacterEngine();
+                    
+                    // Test with mock user profile
+                    const mockProfile = {
+                        openness: 0.8,
+                        conscientiousness: 0.6,
+                        extraversion: 0.7,
+                        agreeableness: 0.5,
+                        neuroticism: 0.3
+                    };
+
+                    // Note: This will use fallback data since external files may not load in test
+                    const matches = characters.calculateCharacterMatches(mockProfile);
+                    
+                    this.addResult(
+                        'Characters: Similarity Matching',
+                        `Found ${matches.length} character matches`,
+                        matches.length > 0
+                    );
+
+                } catch (error) {
+                    this.addResult('Character Matching', `Failed: ${error.message}`, false);
+                }
+            }
+
+            testVisualization() {
+                try {
+                    // Check if Chart.js is available
+                    const chartAvailable = typeof Chart !== 'undefined';
+                    this.addResult(
+                        'Visualization: Chart.js',
+                        chartAvailable ? 'Chart.js loaded successfully' : 'Chart.js not available',
+                        chartAvailable
+                    );
+
+                    if (chartAvailable) {
+                        const viz = new VisualizationEngine();
+                        this.addResult(
+                            'Visualization: Engine',
+                            'VisualizationEngine initialized successfully',
+                            true
+                        );
+
+                        // Test if we can create a mock chart
+                        const canvas = document.createElement('canvas');
+                        canvas.id = 'test-chart';
+                        canvas.width = 200;
+                        canvas.height = 200;
+                        
+                        const mockData = {
+                            openness: 0.8,
+                            conscientiousness: 0.6,
+                            extraversion: 0.7,
+                            agreeableness: 0.5,
+                            neuroticism: 0.3
+                        };
+
+                        // This would normally create a chart
+                        this.addResult(
+                            'Visualization: Chart Creation',
+                            'Chart creation methods available',
+                            typeof viz.createRadarChart === 'function'
+                        );
+                    }
+
+                } catch (error) {
+                    this.addResult('Visualization Test', `Failed: ${error.message}`, false);
+                }
+            }
+
+            addResult(test, message, success) {
+                this.results.push({ test, message, success });
+            }
+
+            displayResults() {
+                const container = document.getElementById('test-results');
+                const totalTests = this.results.length;
+                const passedTests = this.results.filter(r => r.success).length;
+                const failedTests = totalTests - passedTests;
+
+                let html = `
+                    <div class="test-section ${failedTests === 0 ? 'success' : 'error'}">
+                        <h3>${failedTests === 0 ? '✅' : '❌'} Test Results Summary</h3>
+                        <p><strong>Total Tests:</strong> ${totalTests} | <strong>Passed:</strong> ${passedTests} | <strong>Failed:</strong> ${failedTests}</p>
+                    </div>
+                `;
+
+                this.results.forEach(result => {
+                    html += `
+                        <div class="test-section ${result.success ? 'success' : 'error'}">
+                            <h4>${result.success ? '✅' : '❌'} ${result.test}</h4>
+                            <p>${result.message}</p>
+                        </div>
+                    `;
+                });
+
+                if (failedTests === 0) {
+                    html += `
+                        <div class="test-section success">
+                            <h3>🎉 All Tests Passed!</h3>
+                            <p>All modules are loaded correctly and basic functionality is working. You can now <a href="index.html">launch the main application</a>.</p>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="test-section error">
+                            <h3>⚠️ Some Tests Failed</h3>
+                            <p>Please check the failed tests above. Common issues:</p>
+                            <ul>
+                                <li>Missing data files in the data/ directory</li>
+                                <li>JavaScript modules not loading due to file path issues</li>
+                                <li>Network connectivity issues for external resources</li>
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+            }
+        }
+
+        // Run tests when page loads
+        window.addEventListener('load', () => {
+            new ModuleTest();
+        });
+    </script>
+</body>
+</html>

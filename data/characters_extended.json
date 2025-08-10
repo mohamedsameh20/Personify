@@ -1,0 +1,257 @@
+[
+  {
+    "id": "hermione-granger",
+    "name": "Hermione Granger",
+    "show": "Harry Potter",
+    "imageUrl": "📚",
+    "description": "Brilliant, logical, and hardworking witch who values knowledge and academic achievement above all else.",
+    "analysis": "Hermione exemplifies high conscientiousness and openness to experience, with strong intellectual curiosity but lower agreeableness when it comes to rule-breaking. Her personality combines perfectionism with genuine care for others.",
+    "normalizedScores": {
+      "openness": 0.92,
+      "conscientiousness": 0.95,
+      "extraversion": 0.35,
+      "agreeableness": 0.72,
+      "neuroticism": 0.68
+    },
+    "traits": ["Intellectual", "Organized", "Perfectionist", "Loyal", "Anxious"],
+    "mbti": "ISTJ"
+  },
+  {
+    "id": "sherlock-holmes", 
+    "name": "Sherlock Holmes",
+    "show": "Sherlock Holmes",
+    "imageUrl": "🔍",
+    "description": "Brilliant detective with exceptional analytical skills and attention to detail, but lacking in social graces.",
+    "analysis": "Holmes shows extremely high openness and low agreeableness, with moderate conscientiousness focused on his work. His low extraversion and high neuroticism contribute to his eccentric and sometimes difficult personality.",
+    "normalizedScores": {
+      "openness": 0.98,
+      "conscientiousness": 0.78,
+      "extraversion": 0.25,
+      "agreeableness": 0.15,
+      "neuroticism": 0.75
+    },
+    "traits": ["Analytical", "Observant", "Antisocial", "Brilliant", "Eccentric"],
+    "mbti": "INTP"
+  },
+  {
+    "id": "tony-stark",
+    "name": "Tony Stark / Iron Man",
+    "show": "Marvel Comics",
+    "imageUrl": "🤖",
+    "description": "Genius inventor, billionaire, and superhero with a charismatic but sometimes arrogant personality.",
+    "analysis": "Stark combines extremely high openness and extraversion with moderate conscientiousness. His high neuroticism manifests as anxiety and PTSD, while his agreeableness varies depending on the situation.",
+    "normalizedScores": {
+      "openness": 0.96,
+      "conscientiousness": 0.65,
+      "extraversion": 0.88,
+      "agreeableness": 0.45,
+      "neuroticism": 0.72
+    },
+    "traits": ["Innovative", "Charismatic", "Arrogant", "Protective", "Anxious"],
+    "mbti": "ENTP"
+  },
+  {
+    "id": "atticus-finch",
+    "name": "Atticus Finch",
+    "show": "To Kill a Mockingbird", 
+    "imageUrl": "⚖️",
+    "description": "Morally upright lawyer who stands for justice and treats all people with dignity and respect.",
+    "analysis": "Finch exemplifies high agreeableness and conscientiousness with strong moral principles. His moderate extraversion allows him to be both a public figure and private thinker, while low neuroticism provides emotional stability.",
+    "normalizedScores": {
+      "openness": 0.75,
+      "conscientiousness": 0.92,
+      "extraversion": 0.55,
+      "agreeableness": 0.95,
+      "neuroticism": 0.15
+    },
+    "traits": ["Moral", "Just", "Wise", "Calm", "Principled"],
+    "mbti": "ISFJ"
+  },
+  {
+    "id": "elizabeth-bennet",
+    "name": "Elizabeth Bennet",
+    "show": "Pride and Prejudice",
+    "imageUrl": "💃",
+    "description": "Witty, independent, and strong-willed young woman who values authenticity and personal freedom.",
+    "analysis": "Elizabeth shows high openness to experience and moderate extraversion, with strong principles that sometimes clash with social expectations. Her low neuroticism helps her maintain confidence in challenging situations.",
+    "normalizedScores": {
+      "openness": 0.85,
+      "conscientiousness": 0.68,
+      "extraversion": 0.72,
+      "agreeableness": 0.62,
+      "neuroticism": 0.35
+    },
+    "traits": ["Independent", "Witty", "Principled", "Confident", "Perceptive"],
+    "mbti": "ENFP"
+  },
+  {
+    "id": "darth-vader",
+    "name": "Darth Vader",
+    "show": "Star Wars",
+    "imageUrl": "🖤",
+    "description": "Fallen Jedi turned Sith Lord, driven by fear, anger, and a desire for control and power.",
+    "analysis": "Vader represents extremely high neuroticism and low agreeableness, with high conscientiousness focused on order and control. His fall represents a dramatic personality change from his earlier self.",
+    "normalizedScores": {
+      "openness": 0.45,
+      "conscientiousness": 0.88,
+      "extraversion": 0.35,
+      "agreeableness": 0.05,
+      "neuroticism": 0.95
+    },
+    "traits": ["Authoritarian", "Angry", "Disciplined", "Fearful", "Controlling"],
+    "mbti": "ISTJ"
+  },
+  {
+    "id": "tyrion-lannister",
+    "name": "Tyrion Lannister", 
+    "show": "Game of Thrones",
+    "imageUrl": "🍷",
+    "description": "Witty, intelligent dwarf who uses humor and cleverness to navigate a world that often underestimates him.",
+    "analysis": "Tyrion combines high openness and extraversion with moderate agreeableness that's complicated by family loyalty. His neuroticism varies but intelligence and wit are consistent strengths.",
+    "normalizedScores": {
+      "openness": 0.88,
+      "conscientiousness": 0.58,
+      "extraversion": 0.78,
+      "agreeableness": 0.65,
+      "neuroticism": 0.62
+    },
+    "traits": ["Witty", "Intelligent", "Cynical", "Adaptable", "Hedonistic"],
+    "mbti": "ENTP"
+  },
+  {
+    "id": "captain-america",
+    "name": "Steve Rogers / Captain America",
+    "show": "Marvel Comics",
+    "imageUrl": "🛡️",
+    "description": "Moral leader and super-soldier who embodies traditional American values of courage, honor, and justice.",
+    "analysis": "Rogers shows extremely high conscientiousness and agreeableness with strong moral convictions. Moderate extraversion makes him a natural leader, while low neuroticism provides emotional stability in crisis.",
+    "normalizedScores": {
+      "openness": 0.55,
+      "conscientiousness": 0.98,
+      "extraversion": 0.68,
+      "agreeableness": 0.92,
+      "neuroticism": 0.22
+    },
+    "traits": ["Moral", "Brave", "Traditional", "Loyal", "Steadfast"],
+    "mbti": "ISFJ"
+  },
+  {
+    "id": "luna-lovegood",
+    "name": "Luna Lovegood",
+    "show": "Harry Potter",
+    "imageUrl": "🌙",
+    "description": "Dreamy, eccentric, and kind-hearted witch who sees the world through a unique and magical lens.",
+    "analysis": "Luna exhibits extremely high openness to experience with unconventional thinking patterns. Her high agreeableness and low neuroticism create a calm, accepting personality that others find both puzzling and comforting.",
+    "normalizedScores": {
+      "openness": 0.98,
+      "conscientiousness": 0.45,
+      "extraversion": 0.42,
+      "agreeableness": 0.88,
+      "neuroticism": 0.25
+    },
+    "traits": ["Eccentric", "Dreamy", "Kind", "Intuitive", "Unconventional"],
+    "mbti": "INFP"
+  },
+  {
+    "id": "walter-white",
+    "name": "Walter White",
+    "show": "Breaking Bad",
+    "imageUrl": "⚗️",
+    "description": "Chemistry teacher turned drug manufacturer, whose pride and desperation lead him down a dark path.",
+    "analysis": "Walter's personality transforms throughout his arc, but consistently shows high conscientiousness in his work, increasing neuroticism due to stress, and decreasing agreeableness as he becomes more manipulative.",
+    "normalizedScores": {
+      "openness": 0.72,
+      "conscientiousness": 0.85,
+      "extraversion": 0.28,
+      "agreeableness": 0.25,
+      "neuroticism": 0.88
+    },
+    "traits": ["Meticulous", "Prideful", "Manipulative", "Intelligent", "Paranoid"],
+    "mbti": "INTJ"
+  },
+  {
+    "id": "tyrion-batman",
+    "name": "Bruce Wayne / Batman",
+    "show": "DC Comics", 
+    "imageUrl": "🦇",
+    "description": "Billionaire vigilante driven by a desire for justice and haunted by childhood trauma.",
+    "analysis": "Batman shows extremely high conscientiousness and moderate to high neuroticism from trauma. His agreeableness is complicated - low in methods but high in ultimate goals. High openness to unconventional solutions.",
+    "normalizedScores": {
+      "openness": 0.78,
+      "conscientiousness": 0.96,
+      "extraversion": 0.35,
+      "agreeableness": 0.45,
+      "neuroticism": 0.75
+    },
+    "traits": ["Vigilant", "Disciplined", "Brooding", "Strategic", "Traumatized"],
+    "mbti": "INTJ"
+  },
+  {
+    "id": "gandalf",
+    "name": "Gandalf",
+    "show": "Lord of the Rings",
+    "imageUrl": "🧙‍♂️",
+    "description": "Wise wizard and guide who balances ancient knowledge with compassion for all living beings.",
+    "analysis": "Gandalf exhibits high openness and agreeableness with wisdom accumulated over millennia. His conscientiousness manifests in long-term planning, while low neuroticism provides the calm needed for leadership.",
+    "normalizedScores": {
+      "openness": 0.92,
+      "conscientiousness": 0.85,
+      "extraversion": 0.62,
+      "agreeableness": 0.88,
+      "neuroticism": 0.18
+    },
+    "traits": ["Wise", "Patient", "Powerful", "Compassionate", "Mysterious"],
+    "mbti": "INFJ"
+  },
+  {
+    "id": "daenerys-targaryen",
+    "name": "Daenerys Targaryen",
+    "show": "Game of Thrones",
+    "imageUrl": "🐉",
+    "description": "Dragon queen who evolves from exile to conqueror, driven by a desire to liberate the oppressed.",
+    "analysis": "Daenerys shows high extraversion and variable agreeableness depending on circumstances. Her conscientiousness grows with responsibility, while neuroticism increases under pressure and trauma.",
+    "normalizedScores": {
+      "openness": 0.75,
+      "conscientiousness": 0.72,
+      "extraversion": 0.82,
+      "agreeableness": 0.55,
+      "neuroticism": 0.68
+    },
+    "traits": ["Charismatic", "Idealistic", "Authoritative", "Compassionate", "Volatile"],
+    "mbti": "ENFJ"
+  },
+  {
+    "id": "spock",
+    "name": "Spock",
+    "show": "Star Trek",
+    "imageUrl": "🖖",
+    "description": "Half-human, half-Vulcan officer who struggles to balance logic with emotion.",
+    "analysis": "Spock exhibits extremely high conscientiousness and openness to logical analysis, with low extraversion and carefully controlled neuroticism. His agreeableness is filtered through logic rather than emotion.",
+    "normalizedScores": {
+      "openness": 0.88,
+      "conscientiousness": 0.95,
+      "extraversion": 0.35,
+      "agreeableness": 0.68,
+      "neuroticism": 0.32
+    },
+    "traits": ["Logical", "Controlled", "Curious", "Loyal", "Conflicted"],
+    "mbti": "ISTJ"
+  },
+  {
+    "id": "wonder-woman",
+    "name": "Diana Prince / Wonder Woman",
+    "show": "DC Comics",
+    "imageUrl": "⚔️",
+    "description": "Amazonian warrior princess who fights for truth, justice, and compassion in the modern world.",
+    "analysis": "Wonder Woman combines high agreeableness and conscientiousness with strong moral convictions. Her extraversion makes her a natural leader, while low neuroticism provides emotional strength in battle.",
+    "normalizedScores": {
+      "openness": 0.68,
+      "conscientiousness": 0.88,
+      "extraversion": 0.75,
+      "agreeableness": 0.92,
+      "neuroticism": 0.25
+    },
+    "traits": ["Heroic", "Compassionate", "Strong", "Noble", "Diplomatic"],
+    "mbti": "ESFJ"
+  }
+]
