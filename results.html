@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Results | PersonaPrime</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/results.css" />
+  <script defer src="libs/chart.min.js"></script>
+  <script defer src="js/app.js"></script>
+  <script type="module" src="js/visualizations-3d.js"></script>
+  <script type="module" src="js/insights-generator.js"></script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav aria-label="Main navigation" class="nav-main">
+      <a href="index.html" class="logo">PersonaPrime</a>
+      <ul class="nav-links">
+        <li><a href="assessment.html">Assessment</a></li>
+        <li><a href="characters.html">Characters</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="results" id="resultsRoot" tabindex="-1">
+    <h1>Your Personality Results</h1>
+    <section class="summary" aria-labelledby="summaryHeading">
+      <h2 id="summaryHeading">Summary</h2>
+      <div id="personalityBadge"></div>
+      <div id="mbtiType"></div>
+      <div id="keyStrengths"></div>
+    </section>
+    <section class="charts" aria-label="Personality charts">
+      <canvas id="radarChart" aria-label="Trait radar chart" role="img"></canvas>
+      <div id="barCharts" class="bar-charts"></div>
+      <div id="heatMap" class="heat-map" aria-label="Trait correlation heat map"></div>
+    </section>
+    <section class="character-matches" aria-labelledby="characterMatchesHeading">
+      <h2 id="characterMatchesHeading">Character Matches</h2>
+      <div id="characterMatchList" class="character-match-list"></div>
+    </section>
+    <section class="insights" aria-labelledby="insightsHeading">
+      <h2 id="insightsHeading">Insights & Recommendations</h2>
+      <div id="insightContent"></div>
+      <button id="downloadReport">Download Report (PDF)</button>
+      <button id="shareSummary">Share Summary</button>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span id="year"></span> PersonaPrime.</p>
+  </footer>
+</body>
+</html>

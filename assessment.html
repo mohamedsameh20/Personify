@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assessment | PersonaPrime</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/assessment.css" />
+  <script defer src="js/app.js"></script>
+  <script type="module" src="js/assessment-engine.js"></script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav aria-label="Main navigation" class="nav-main">
+      <a href="index.html" class="logo">PersonaPrime</a>
+      <ul class="nav-links">
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="results.html">Results</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="assessment" id="assessmentRoot" tabindex="-1">
+    <section class="assessment-intro" id="assessmentIntro" aria-labelledby="assessmentHeading">
+      <h1 id="assessmentHeading">Premium Personality Assessment</h1>
+      <p>Select a mode to begin. You can pause anytime; progress is saved locally.</p>
+      <div class="mode-select">
+        <button class="mode-btn" data-mode="quick">Quick (30)</button>
+        <button class="mode-btn" data-mode="standard">Standard (60)</button>
+        <button class="mode-btn" data-mode="comprehensive">Comprehensive (120)</button>
+      </div>
+    </section>
+
+    <section class="question-panel" id="questionPanel" hidden aria-live="polite">
+      <div class="progress-bar" aria-label="Assessment progress">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="question-meta">
+        <span id="questionIndex"></span>
+        <span id="traitContext"></span>
+        <span id="uncertaintyBadge" hidden>Refining Accuracy...</span>
+      </div>
+      <div class="question-container" id="questionContainer"></div>
+      <div class="answer-controls" id="answerControls"></div>
+      <div class="nav-controls">
+        <button id="prevQuestion" disabled>Previous</button>
+        <button id="nextQuestion" disabled>Next</button>
+        <button id="pauseAssessment">Pause</button>
+      </div>
+      <aside class="live-insights" aria-label="Live personality insights">
+        <h2>Emerging Pattern</h2>
+        <div id="liveInsights"></div>
+      </aside>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span id="year"></span> PersonaPrime.</p>
+  </footer>
+</body>
+</html>

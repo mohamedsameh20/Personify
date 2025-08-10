@@ -1,0 +1,14 @@
+{
+  "honesty_humility": {"weight":1.0},
+  "emotionality": {"weight":1.0},
+  "extraversion": {"weight":1.0},
+  "agreeableness": {"weight":1.0},
+  "conscientiousness": {"weight":1.0},
+  "openness": {"weight":1.0},
+  "dominance": {"weight":0.9},
+  "vigilance": {"weight":0.8},
+  "self_transcendence": {"weight":0.85},
+  "abstract_orientation": {"weight":0.75},
+  "value_orientation": {"weight":0.7},
+  "flexibility": {"weight":0.8}
+}

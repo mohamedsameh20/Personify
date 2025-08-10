@@ -1,0 +1,5 @@
+{
+  "extraversion": {"dominance": {"correlation":0.64, "confidence":0.92, "weight":1.0}, "emotionality": {"correlation":-0.28, "confidence":0.88, "weight":0.8}},
+  "conscientiousness": {"flexibility": {"correlation":-0.76, "confidence":0.95, "weight":1.0}, "vigilance": {"correlation":0.08, "confidence":0.75, "weight":0.6}},
+  "meta": {"lastUpdated": "2025-01-01", "basis": "HEXACO + Big Five integration studies"}
+}

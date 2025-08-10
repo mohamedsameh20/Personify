@@ -1,0 +1,61 @@
+/* Global styles & theming */
+:root {
+  --color-bg: #0e1116;
+  --color-surface: rgba(255,255,255,0.05);
+  --color-text: #f5f7fa;
+  --color-accent: #4ecdc4;
+  --color-accent-alt: #ff6b6b;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 28px;
+  --transition-fast: 160ms ease;
+  --transition-med: 320ms ease;
+  --shadow-soft: 0 4px 12px -2px rgba(0,0,0,0.4);
+  --gradient-accent: linear-gradient(135deg,#ff6b6b,#4ecdc4 55%,#1a535c);
+}
+
+body { margin:0; font-family: 'Inter', system-ui, sans-serif; background:#0e1116; color:var(--color-text); -webkit-font-smoothing: antialiased; }
+
+.site-header { position:sticky; top:0; backdrop-filter: blur(12px); background:rgba(14,17,22,0.72); z-index:50; }
+.nav-main { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1.25rem; }
+.nav-main .logo { font-weight:600; font-size:1.15rem; text-decoration:none; background:var(--gradient-accent); -webkit-background-clip:text; color:transparent; }
+.nav-links { list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
+.nav-links a, .nav-links button { color:var(--color-text); background:none; border:0; font:inherit; cursor:pointer; padding:.5rem .9rem; border-radius:var(--radius-sm); transition:var(--transition-fast); }
+.nav-links a:hover, .nav-links button:hover { background:var(--color-surface); }
+
+.hero { min-height:72vh; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); align-items:center; padding:4rem clamp(1rem,4vw,4rem); gap:3rem; position:relative; }
+.hero-visual { position:relative; min-height:320px; }
+#heroParticles { position:absolute; inset:0; width:100%; height:100%; }
+.hero-content h1 { font-size:clamp(2.2rem,5.1vw,3.5rem); line-height:1.05; margin:0 0 1rem; }
+.tagline { font-size:1.15rem; max-width:42ch; opacity:.82; margin:0 0 1.75rem; }
+.cta-group { display:flex; gap:1rem; flex-wrap:wrap; }
+.btn { --btn-bg:var(--color-accent); --btn-color:#081417; position:relative; display:inline-flex; align-items:center; justify-content:center; padding:.9rem 1.35rem; font-weight:600; border-radius:var(--radius-md); border:0; cursor:pointer; text-decoration:none; color:var(--btn-color); background:var(--btn-bg); box-shadow:var(--shadow-soft); transition:transform var(--transition-fast), background var(--transition-fast); }
+.btn-primary { --btn-bg:var(--gradient-accent); color:#fff; }
+.btn-secondary { --btn-bg:var(--color-surface); --btn-color:var(--color-text); }
+.btn:hover { transform:translateY(-2px); }
+.btn:active { transform:translateY(0); }
+
+.feature-showcase { padding:4rem clamp(1rem,4vw,4rem); background:linear-gradient(to bottom,#10151c,#0e1116 40%); }
+.feature-showcase[hidden] { display:none !important; }
+.features-grid { display:grid; list-style:none; margin:2rem 0 0; padding:0; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.35rem; }
+.feature-card { background:var(--color-surface); padding:1.25rem 1.05rem 1.4rem; border-radius:var(--radius-md); position:relative; overflow:hidden; backdrop-filter: blur(6px); cursor:default; transition:var(--transition-med); }
+.feature-card::before { content:""; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,107,107,.16),rgba(78,205,196,.16)); opacity:0; transition:var(--transition-med); }
+.feature-card:hover::before { opacity:1; }
+.feature-card h3 { margin:.15rem 0 .5rem; font-size:1.05rem; letter-spacing:.5px; }
+.feature-card p { margin:0; font-size:.9rem; line-height:1.35rem; opacity:.8; }
+
+.character-preview { padding:4rem clamp(1rem,4vw,4rem); }
+.character-carousel { display:grid; grid-auto-flow:column; gap:1.25rem; overflow-x:auto; scrollbar-width:none; }
+.character-carousel::-webkit-scrollbar { display:none; }
+
+.site-footer { padding:2rem 1rem; text-align:center; font-size:.8rem; opacity:.7; }
+
+/* Accessibility focus styles */
+:focus-visible { outline:2px solid var(--color-accent); outline-offset:3px; border-radius:2px; }
+
+@media (max-width:680px){
+  .nav-links { gap:.35rem; }
+  .hero { padding:3rem 1.25rem; }
+  .feature-showcase { padding:3rem 1.25rem; }
+  .character-preview { padding:3rem 1.25rem; }
+}

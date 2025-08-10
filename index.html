@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Premium Personality Assessment</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preload" href="css/assessment.css" as="style" />
+  <link rel="preload" href="css/results.css" as="style" />
+  <link rel="preload" href="css/characters.css" as="style" />
+  <script defer src="js/app.js"></script>
+</head>
+<body class="theme-loading">
+  <header class="site-header" role="banner">
+    <nav aria-label="Main navigation" class="nav-main">
+      <a href="index.html" class="logo" aria-label="Home">PersonaPrime</a>
+      <ul class="nav-links">
+        <li><a href="assessment.html">Assessment</a></li>
+        <li><a href="characters.html">Characters</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><button id="themeToggle" aria-pressed="false">Toggle Theme</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="landing" class="landing" tabindex="-1">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-content">
+        <h1 id="heroTitle">Discover Your Premium Personality Profile</h1>
+        <p class="tagline">Adaptive assessment. Advanced analytics. Character-driven insights.</p>
+        <div class="cta-group">
+          <a href="assessment.html" class="btn btn-primary" id="beginJourney">Begin Your Journey</a>
+          <button class="btn btn-secondary" id="viewFeatures" aria-expanded="false" aria-controls="featureShowcase">Explore Features</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="heroParticles"></canvas>
+      </div>
+    </section>
+
+    <section id="featureShowcase" class="feature-showcase" hidden>
+      <h2>Premium Feature Suite</h2>
+      <ul class="features-grid" role="list">
+        <li class="feature-card" data-feature="adaptive">
+          <h3>Adaptive Intelligence</h3>
+          <p>Smart question selection refines accuracy in real-time.</p>
+        </li>
+        <li class="feature-card" data-feature="visualizations">
+          <h3>3D Visualizations</h3>
+          <p>Interact with immersive radar, bar, and heat map charts.</p>
+        </li>
+        <li class="feature-card" data-feature="characters">
+          <h3>Character Matching</h3>
+          <p>See how you align with beloved personalities.</p>
+        </li>
+        <li class="feature-card" data-feature="insights">
+          <h3>AI Insights</h3>
+          <p>Actionable guidance, growth paths, and strengths.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="character-preview" aria-labelledby="characterPreviewHeading">
+      <h2 id="characterPreviewHeading">Character Personality Preview</h2>
+      <div id="characterCarousel" class="character-carousel" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <span id="year"></span> PersonaPrime. All local. No data leaves your device.</p>
+  </footer>
+</body>
+</html>
